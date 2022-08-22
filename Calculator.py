@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import messagebox
+
 
 # GUI Calculator
 
@@ -36,18 +38,21 @@ def button_equal():
     sec_num = float(Entry_bar.get())      # Saves the second number typed
     Entry_bar.delete(0, END)
 
-    # Checks what calculation we are doing
-    if calculation == "Addition":
-        Entry_bar.insert(0, str(f_num + sec_num))
+    try:
+        if calculation == "Addition":       # Checks what calculation we are doing
+            Entry_bar.insert(0, str(f_num + sec_num))
 
-    elif calculation == "Multiplication":
-        Entry_bar.insert(0, str(f_num * sec_num))
+        elif calculation == "Multiplication":
+            Entry_bar.insert(0, str(f_num * sec_num))
 
-    elif calculation == "Division":
-        Entry_bar.insert(0, str(f_num / sec_num))
+        elif calculation == "Division":
+            Entry_bar.insert(0, str(f_num / sec_num))
 
-    elif calculation == "Subtraction":
-        Entry_bar.insert(0, str(f_num - sec_num))
+        elif calculation == "Subtraction":
+            Entry_bar.insert(0, str(f_num - sec_num))
+
+    except ZeroDivisionError:       # Prints a popup error if you divide by zero
+        messagebox.showerror("Division by zero", "Unable to divide by zero")
 
 
 # Multiplication button
@@ -119,6 +124,3 @@ button_sub.grid(row=6, column=2)
 
 
 root.mainloop()
-
-# Comments:
-# Create an error popup when dividing by 0
